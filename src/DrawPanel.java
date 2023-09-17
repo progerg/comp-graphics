@@ -13,17 +13,15 @@ public class DrawPanel extends JPanel implements ActionListener {
     private final int PANEL_WIDTH;
     private final int PANEL_HEIGHT;
     private final int TIMER_DELAY;
-    private Timer timer;
+    private final Timer timer;
     private int ticksFromStart = 0;
-
-    private Amogus amogus;
-    private Grass grass;
-    private Sun sun;
-    private Tree tree1;
-    private Tree tree2;
-    private Tree tree3;
-    private Tank tank;
-    private List<Cloud> clouds = new ArrayList<>();
+    private final Grass grass;
+    private final Sun sun;
+    private final Tree tree1;
+    private final Tree tree2;
+    private final Tree tree3;
+    private final Tank tank;
+    private final List<Cloud> clouds = new ArrayList<>();
 
     public DrawPanel(final int width, final int height, final int timerDelay) {
         this.PANEL_WIDTH = width;
@@ -41,7 +39,6 @@ public class DrawPanel extends JPanel implements ActionListener {
         this.tree1 = new Tree(300, grass.getY() - 150, 200, 300);
         this.tree2 = new Tree(80, grass.getY() - 50, 200, 300);
         this.tree3 = new Tree(500, grass.getY(), 200, 300);
-        //this.amogus = new Amogus(ticksFromStart, height - 360, 200, 260, Color.BLACK);
         this.tank = new Tank(0, grass.getY(), 200, 100);
     }
 
