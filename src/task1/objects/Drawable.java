@@ -1,4 +1,4 @@
-package objects;
+package task1.objects;
 
 import java.awt.*;
 

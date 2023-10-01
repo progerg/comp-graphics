@@ -1,9 +1,10 @@
-package objects;
+package task1.objects;
 
 import java.awt.*;
 
 public class Tank implements Drawable {
-    private int x, y;
+    private int x;
+    private final int y;
     private final int width, height;
     private final Color firstColor, secondColor, strokeColor;
 
@@ -21,9 +22,6 @@ public class Tank implements Drawable {
         this.x = x;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
 
     @Override
     public void draw(Graphics2D g) {

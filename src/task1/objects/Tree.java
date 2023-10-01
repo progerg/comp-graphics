@@ -1,23 +1,22 @@
-package objects;
+package task1.objects;
 
 import java.awt.*;
 
 public class Tree implements Drawable {
-    private int x;
-    private int y;
-    private int width;
-    private int height;
-    private int radius;
-    private Color foliageColor;
-    private Color trunkColor;
+    private final int x;
+    private final int y;
+    private final int width;
+    private final int height;
+    private final int radius;
+    private final Color foliageColor;
+    private final Color trunkColor;
 
+    /**
+     * x - x coord of trunk left up corner
+     * y - y coord of trunk left up corner - radius / 2
+     * width - some const value. total width is
+     */
     public Tree(final int x, final int y, final int width, final int height) {
-        /**
-         * x - x coord of trunk left up corner
-         * y - y coord of trunk left up corner - radius / 2
-         * width - some const value. total width is
-         */
-
         this.x = x;
         this.y = y;
         this.width = width;
@@ -30,7 +29,7 @@ public class Tree implements Drawable {
     @Override
     public void draw(final Graphics2D g) {
         g.setColor(trunkColor);
-        g.fillRect(x + (int) (radius / 8), y + radius / 2, width / 3, height / 2);
+        g.fillRect(x + (radius / 8), y + radius / 2, width / 3, height / 2);
 
         int offsetX = radius / 3 * 2;
         int offsetY = (int) (radius / 2.1);
