@@ -12,7 +12,6 @@ import java.util.Random;
 
 public class DrawPanel extends JPanel implements ActionListener {
     private final Timer timer;
-    private int ticksFromStart = 0;
     private final List<Drawable> objects;
 
     public DrawPanel(final int width, final int height, final int timerDelay) {
@@ -42,9 +41,6 @@ public class DrawPanel extends JPanel implements ActionListener {
         super.paint(gr);
         Graphics2D g = (Graphics2D) gr;
         for (Drawable object: objects) {
-            if (object.getClass() == Tank.class) {
-                ((Tank) object).setX(ticksFromStart);
-            }
             object.draw(g);
         }
     }
@@ -53,7 +49,6 @@ public class DrawPanel extends JPanel implements ActionListener {
     public void actionPerformed(final ActionEvent e) {
         if (e.getSource() == timer) {
             repaint();
-            ++ticksFromStart;
         }
     }
 }

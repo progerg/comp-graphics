@@ -2,7 +2,7 @@ package task1.objects;
 
 import java.awt.*;
 
-public class Tank implements Drawable {
+public class Tank implements Drawable{
     private int x;
     private final int y;
     private final int width, height;
@@ -18,13 +18,10 @@ public class Tank implements Drawable {
         this.strokeColor = new Color(66, 52, 28);
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-
     @Override
     public void draw(Graphics2D g) {
+        this.x += 1;
+
         // Drawing the tracks
         g.drawRoundRect(x, height / 2 + y, width, height / 2, width / 2, width / 2);
         g.setColor(firstColor);
