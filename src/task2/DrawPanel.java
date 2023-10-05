@@ -20,7 +20,7 @@ public class DrawPanel extends JPanel implements ActionListener {
         timer = new Timer(timerDelay, this);
         timer.start();
 
-        circleArc = new CircleArc(275, 300, 200, 0, 360, Color.BLUE, Color.RED);
+        circleArc = new CircleArc(275, 300, 200, 0, 180, Color.BLUE, Color.RED);
     }
 
     @Override

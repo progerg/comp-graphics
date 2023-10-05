@@ -6,40 +6,47 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class DrawPanel extends JPanel implements ActionListener {
     private final Timer timer;
     private int ticksFromStart = 0;
-    private final Grass grass;
-    private final Tree tree1;
-    private final Tree tree2;
-    private final Tree tree3;
-    private final Tank tank;
-    private final Background background;
+    private final List<Drawable> objects;
 
     public DrawPanel(final int width, final int height, final int timerDelay) {
         timer = new Timer(timerDelay, this);
         timer.start();
 
-        this.grass = new Grass(0, height - 200, width, 200);
-        this.tree1 = new Tree(300, grass.getY() - 150, 200, 300);
-        this.tree2 = new Tree(80, grass.getY() - 50, 200, 300);
-        this.tree3 = new Tree(500, grass.getY(), 200, 300);
-        this.tank = new Tank(0, grass.getY(), 200, 100);
-        this.background = new Background(width, height);
+        Grass grass = new Grass(0, height - 200, width, 200);
+        Tree tree1 = new Tree(300, grass.getY() - 150, 200, 300);
+        Tree tree2 = new Tree(80, grass.getY() - 50, 200, 300);
+        Tree tree3 = new Tree(500, grass.getY(), 200, 300);
+        Tank tank = new Tank(0, grass.getY(), 200, 100);
+
+        List<Drawable> backgroundObjects = new ArrayList<>();
+        Sun sun = new Sun(width - 150, -150, 300, 300, 15, 100);
+        backgroundObjects.add(sun);
+        Random random = new Random();
+        for (int i = 0; i < 6; i++) {
+            backgroundObjects.add(new Cloud(i * 125, random.nextInt(height / 6), 150, 75));
+        }
+
+        Background background = new Background(width, height, backgroundObjects);
+        objects = List.of(background, grass, tree1, tank, tree2, tree3);
     }
 
     @Override
     public void paint(final Graphics gr) {
         super.paint(gr);
         Graphics2D g = (Graphics2D) gr;
-        background.draw(g);
-        grass.draw(g);
-        tree1.draw(g);
-        tank.setX(ticksFromStart);
-        tank.draw(g);
-        tree2.draw(g);
-        tree3.draw(g);
+        for (Drawable object: objects) {
+            if (object.getClass() == Tank.class) {
+                ((Tank) object).setX(ticksFromStart);
+            }
+            object.draw(g);
+        }
     }
 
     @Override
