@@ -2,25 +2,18 @@ package task2;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class DrawPanel extends JPanel implements ActionListener {
+public class DrawPanel extends JPanel{
 
     private final int PANEL_WIDTH;
     private final int PANEL_HEIGHT;
-    private final Timer timer;
+    private final Drawable[] drawables;
 
-    private final CircleArc circleArc;
-
-    public DrawPanel(final int width, final int height, final int timerDelay) {
+    public DrawPanel(final int width, final int height, Drawable... drawables) {
         this.PANEL_WIDTH = width;
         this.PANEL_HEIGHT = height;
 
-        timer = new Timer(timerDelay, this);
-        timer.start();
-
-        circleArc = new CircleArc(275, 300, 200, 0, 180, Color.BLUE, Color.RED);
+        this.drawables = drawables;
     }
 
     @Override
@@ -33,13 +26,8 @@ public class DrawPanel extends JPanel implements ActionListener {
         g.setFont(new Font(null, Font.PLAIN, 29));
         g.drawString("Дуга окружности с интерполяцией цвета", 8, 50);
 
-        circleArc.draw(g);
-    }
-
-    @Override
-    public void actionPerformed(final ActionEvent e) {
-        if (e.getSource() == timer) {
-            repaint();
+        for (Drawable drawable: drawables) {
+            drawable.draw(g);
         }
     }
 }
